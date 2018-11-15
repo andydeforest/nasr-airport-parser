@@ -1,0 +1,12 @@
+{
+    "name": "andydeforest/nasr-airport-parser",
+    "description": "A tool for parsing airport data from the FAAs 28-day NASR subscription",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "andydeforest",
+            "email": "andydeforest@gmail.com"
+        }
+    ],
+    "require": {}
+}
