@@ -21,6 +21,7 @@ $parser = new Parser('./APT.txt');
 
 $parser->forEach(function($airport) {
 	$name = $airport->getName();
+	$runways = $airport->getRunways();
 });
 ```
 ### Available Airport Methods
@@ -42,6 +43,16 @@ $parser->forEach(function($airport) {
 |getArtcc()|string|Gets the ARTCC code for the governing ARTCC body|ZAU
 |hasControlTower()|bool|Gets whether or not the airport has a control tower|true
 |getCtaf()|string|Gets common traffic advisory frequency for the airport|122.8
+
+### Available Runway Methods
+
+| Method           | Returns | Description| Example|
+|------------------|---------|------------|--------|
+|getIdentifier()|string|Gets the runway identifier for an airport|09/27
+|getLength()|integer|Gets the length of the runway to the nearest foot|5000
+|getWidth()|integer|Gets the width of the runway to the nearest foot|150
+|getMarkings()|string|Gets the runway markings|PIR
+
 
 ## License
 
