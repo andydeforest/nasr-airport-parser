@@ -11,6 +11,8 @@ class Parser {
 	 */
 	private $location;
 
+	private $current_airport = null;
+
 	/**
 	 * Parser constructor
 	 *
@@ -74,10 +76,26 @@ class Parser {
 					// N176-38-32.9277W635912.9277
 					$lat = $this->dmsToDeci(substr($line, 523, 14));
 					$lng = $this->dmsToDeci(substr($line, 550, 15));
+					
 
 					$airport = new Airport($icao, $identifier, $name, $city, $county, $state, $lat, $lng, $elevation, $type, $regionCode, $ownership, $artcc, $controlTower, $ctaf);
 
+					$this->current_airport = $airport;
+
 					$callback($airport);
+
+				} else if(substr($line, 0, 3) === 'RWY') {
+					// Parse runway info for this airport
+					$rwy_id = $this->parseLine($line, 16, 7);
+					$rwy_length = intval($this->parseLine($line, 23, 5));
+					$rwy_width = intval($this->parseLine($line, 28, 4));
+
+					$rwy_markings = $this->parseLine($line, 304, 5);
+
+					$runway = new Runway($rwy_id, $rwy_length, $rwy_width, $rwy_markings);
+
+					$airport->addRunway($runway);
+
 
 				} else {
 					continue;

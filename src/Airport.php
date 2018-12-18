@@ -1,5 +1,7 @@
 <?php
 
+require 'Runway.php';
+
 class Airport {
 
 	/**
@@ -86,6 +88,12 @@ class Airport {
 	 * @var string
 	 */
 	private $ctaf;
+	/**
+	 * Array of runways for this airport
+	 *
+	 * @var array
+	 */
+	private $runways = [];
 
 	/**
 	 * Constructor for Airport
@@ -122,6 +130,14 @@ class Airport {
 		$this->artcc = $artcc;
 		$this->hasControlTower = $hasControlTower;
 		$this->ctaf = $ctaf;
+	}
+	
+	public function addRunway(Runway $rwy) {
+		array_push($this->runways, $rwy);
+	}
+
+	public function getRunways() {
+		return $this->runways;
 	}
 
 	/**
